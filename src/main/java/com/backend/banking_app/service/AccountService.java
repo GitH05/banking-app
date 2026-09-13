@@ -14,4 +14,6 @@ public interface AccountService {
     AccountDto withdraw(Long accountId, Double balance);
 
     List<AccountDto> getAllAccounts(); // Optional method to retrieve all accounts
+
+    void deleteAccount(Long accountId); // Optional method to delete an account
 }
