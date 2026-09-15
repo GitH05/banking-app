@@ -11,28 +11,36 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(AccountNotFoundException.class)
-public ResponseEntity<Map<String, String>> handleAccountNotFoundException(
-        AccountNotFoundException ex) {
+    public ResponseEntity<Map<String, String>> handleAccountNotFoundException(
+            AccountNotFoundException ex) {
 
-    return new ResponseEntity<>(
-            Map.of("message", ex.getMessage()),
-            HttpStatus.NOT_FOUND);
-}
+        return new ResponseEntity<>(
+                Map.of("message", ex.getMessage()),
+                HttpStatus.NOT_FOUND);
+    }
 
     @ExceptionHandler(InSufficientBalanceException.class)
-public ResponseEntity<Map<String, String>> handleInsufficientBalanceException(
-        InSufficientBalanceException ex) {
+    public ResponseEntity<Map<String, String>> handleInsufficientBalanceException(
+            InSufficientBalanceException ex) {
 
-    return new ResponseEntity<>(
-            Map.of("message", ex.getMessage()),
-            HttpStatus.BAD_REQUEST);
-}
+        return new ResponseEntity<>(
+                Map.of("message", ex.getMessage()),
+                HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidAccountDataException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidAccountDataException(
+        InvalidAccountDataException ex) {
+        return new ResponseEntity<>(
+                Map.of("message", ex.getMessage()),
+                HttpStatus.BAD_REQUEST);
+    }
 
     @ExceptionHandler(Exception.class)
-public ResponseEntity<Map<String, String>> handleException(Exception ex) {
+    public ResponseEntity<Map<String, String>> handleException(Exception ex) {
 
-    return new ResponseEntity<>(
-            Map.of("message", "Something went wrong: " + ex.getMessage()),
-            HttpStatus.INTERNAL_SERVER_ERROR);
-}
+        return new ResponseEntity<>(
+                Map.of("message", "Something went wrong: " + ex.getMessage()),
+                HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

@@ -8,6 +8,7 @@ import com.backend.banking_app.dto.AccountDto;
 import com.backend.banking_app.entity.Account;
 import com.backend.banking_app.exception.AccountNotFoundException;
 import com.backend.banking_app.exception.InSufficientBalanceException;
+import com.backend.banking_app.exception.InvalidAccountDataException;
 import com.backend.banking_app.mapper.AccountMapper;
 import com.backend.banking_app.repository.AccountRepository;
 import com.backend.banking_app.service.AccountService;
@@ -23,6 +24,13 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountDto createAccount(AccountDto accountDto) {
+
+        String validationMessage = validate(accountDto);
+
+        if (!validationMessage.equals("VALID")) {
+            throw new InvalidAccountDataException(validationMessage);
+        }
+
         Account account = AccountMapper.mapAccountDtoToAccount(accountDto);
         Account savedAccount = accountRepository.save(account);
 
@@ -87,5 +95,23 @@ public class AccountServiceImpl implements AccountService {
                         "Account not found with id: " + accountId));
 
         accountRepository.deleteById(accountId);
+    }
+
+    public String validate(AccountDto accountDto) {
+
+        if (accountDto == null) {
+            return "Account data is required";
+        }
+
+        if (accountDto.getAccountHolderName() == null ||
+                accountDto.getAccountHolderName().trim().isEmpty()) {
+            return "Account holder name is required";
+        }
+
+        if (accountDto.getBalance() < 0) {
+            return "Initial account balance cannot be less than 0.";
+        }
+
+        return "VALID";
     }
 }
