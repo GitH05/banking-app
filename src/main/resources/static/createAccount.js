@@ -1,3 +1,13 @@
+/**
+ * ============================================================
+ * @author      Santosh Kumar Dhawal
+ * @role        Software Engineer
+ * @created     2026-09-14
+ * @version     1.0.0
+ * @signature   Original implementation by Santosh Kumar Dhawal
+ * ============================================================
+ */
+
 const form = document.getElementById("createAccountForm");
 
 const nameInput = document.getElementById("accountHolderName");
