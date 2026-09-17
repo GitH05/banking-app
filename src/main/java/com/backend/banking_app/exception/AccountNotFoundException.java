@@ -4,6 +4,6 @@ public class AccountNotFoundException extends RuntimeException {
 
     public AccountNotFoundException(String message) {
         super(message);
-        System.out.println("AccountNotFoundException: " + message); // Log the exception message
+        System.out.println("AccountNotFoundException: " + message);
     }
 }

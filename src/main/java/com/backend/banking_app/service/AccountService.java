@@ -13,7 +13,7 @@ public interface AccountService {
 
     AccountDto withdraw(Long accountId, Double balance);
 
-    List<AccountDto> getAllAccounts(); // Optional method to retrieve all accounts
+    List<AccountDto> getAllAccounts();
 
-    void deleteAccount(Long accountId); // Optional method to delete an account
+    void deleteAccount(Long accountId);
 }

@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(InvalidAccountDataException.class)
     public ResponseEntity<Map<String, String>> handleInvalidAccountDataException(
-        InvalidAccountDataException ex) {
+            InvalidAccountDataException ex) {
         return new ResponseEntity<>(
                 Map.of("message", ex.getMessage()),
                 HttpStatus.BAD_REQUEST);
