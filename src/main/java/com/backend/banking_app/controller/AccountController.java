@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 @RequestMapping("/api/accounts")
 public class AccountController {
-    
+
     private AccountService accountService;
 
     public AccountController(AccountService accountService) {
